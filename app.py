@@ -3,15 +3,21 @@ from fastapi.responses import JSONResponse
 import shutil
 import os
 from classifier import email_classifier, extract_text_pdf
+from fastapi.staticfiles import StaticFiles
+from fastapi.templating import Jinja2Templates
+from fastapi import Request
 
 UPLOAD_DIR = "uploads"
 os.makedirs(UPLOAD_DIR, exist_ok=True)
 
 app = FastAPI()
 
+app.mount("/static", StaticFiles(directory="static"), name="static")
+templates = Jinja2Templates(directory="templates")
+
 @app.get("/")
-def home():
-    return {"mensagem": "API de classificação de Emails"}
+def home(request: Request):
+    return templates.TemplateResponse("index.html", {"request": request})
 
 @app.post("/classify")
 async def classify(

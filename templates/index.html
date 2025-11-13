@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Classifier - AutoU Challenge</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📧 Email Classifier</h1>
+            <p>Classificação inteligente de emails corporativos</p>
+        </header>
+
+        <div class="form-card">
+            <h2>Classifique um Email</h2>
+            
+            <form id="form-email">
+                <label for="texto-email">Digite ou cole o conteúdo do email:</label>
+                <textarea 
+                    id="texto-email" 
+                    rows="10" 
+                    placeholder="Exemplo de email: Olá, estou com erro 404 ao acessar o sistema. Protocolo #12345..."
+                    required
+                ></textarea>
+                
+                <button type="submit" class="btn-primary">
+                    🔍 Classificar Email
+                </button>
+            </form>
+
+            <div class="divisor">
+                <span>ou</span>
+            </div>
+
+            <div class="upload-section">
+                <input type="file" id="arquivo-input" accept=".pdf,.txt" hidden>
+                <button type="button" class="btn-secondary" onclick="document.getElementById('arquivo-input').click()">
+                    📎 Enviar Arquivo (PDF ou TXT)
+                </button>
+                <p id="nome-arquivo" class="arquivo-nome"></p>
+            </div>
+        </div>
+
+        <div id="loading" class="loading" style="display: none;">
+            <div class="spinner"></div>
+            <p>Analisando email com IA...</p>
+        </div>
+
+        <div id="resultado" class="resultado" style="display: none;">
+        </div>
+
+    </div>
+
+    <script src="/static/js/main.js"></script>
+</body>
+</html>
